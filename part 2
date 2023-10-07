@@ -1,0 +1,95 @@
+  class Vehicle
+{
+    protected double x; // координата x
+    protected double y; // координата y
+    protected double price; // цена
+    protected double speed; // скорость
+    protected int year; // год выпуска
+
+    public Vehicle(double x, double y, double price, double speed, int year)
+    {
+        this.x = x;
+        this.y = y;
+        this.price = price;
+        this.speed = speed;
+        this.year = year;
+    }
+
+    public virtual void DisplayInfo()
+    {
+        Console.WriteLine("Координаты: ({0}, {1})", x, y);
+        Console.WriteLine("Цена: {0}", price);
+        Console.WriteLine("Скорость: {0}", speed);
+        Console.WriteLine("Год выпуска: {0}", year);
+    }
+}
+
+class Plane : Vehicle
+{
+    private double altitude; // высота
+    private int passengerCount; // количество пассажиров
+
+    public Plane(double x, double y, double price, double speed, int year, double altitude, int passengerCount)
+        : base(x, y, price, speed, year)
+    {
+        this.altitude = altitude;
+        this.passengerCount = passengerCount;
+    }
+
+    public override void DisplayInfo()
+    {
+        base.DisplayInfo();
+        Console.WriteLine("Высота: {0}", altitude);
+        Console.WriteLine("Количество пассажиров: {0}", passengerCount);
+    }
+}
+
+class Car : Vehicle
+{
+    public Car(double x, double y, double price, double speed, int year)
+        : base(x, y, price, speed, year)
+    {
+
+    }
+}
+
+class Ship : Vehicle
+{
+    private string portOfRegistry; // порт приписки
+    private int passengerCount; // количество пассажиров
+
+    public Ship(double x, double y, double price, double speed, int year, string portOfRegistry, int passengerCount)
+        : base(x, y, price, speed, year)
+    {
+        this.portOfRegistry = portOfRegistry;
+        this.passengerCount = passengerCount;
+    }
+
+    public override void DisplayInfo()
+    {
+        base.DisplayInfo();
+        Console.WriteLine("Порт приписки: {0}", portOfRegistry);
+        Console.WriteLine("Количество пассажиров: {0}", passengerCount);
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Vehicle vehicle1 = new Plane(10, 20, 1000000, 500, 2021, 10000, 200);
+        Vehicle vehicle2 = new Car(30, 40, 50000, 200, 2018);
+        Vehicle vehicle3 = new Ship(50, 60, 2000000, 300, 2015, "New York", 500);
+
+        vehicle1.DisplayInfo();
+        Console.WriteLine();
+
+        vehicle2.DisplayInfo();
+        Console.WriteLine();
+
+        vehicle3.DisplayInfo();
+        Console.WriteLine();
+
+        Console.ReadLine();
+    }
+}
